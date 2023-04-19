@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sesi = SessionManager(this)
+        val sesi = com.riopermana.core.SessionManager(this)
         userRepository = UserRepository.getInstance(sesi)
 
         if (userRepository.isUserLogin()) {

@@ -1,12 +1,12 @@
 package com.dicoding.mysimplelogin
 
-class UserRepository(private val sesi: SessionManager) {
+class UserRepository(private val sesi: com.riopermana.core.SessionManager) {
 
     companion object {
         @Volatile
         private var instance: UserRepository? = null
 
-        fun getInstance(sesi: SessionManager): UserRepository =
+        fun getInstance(sesi: com.riopermana.core.SessionManager): UserRepository =
             instance ?: synchronized(this) {
                 instance ?: UserRepository(sesi)
             }
@@ -14,10 +14,10 @@ class UserRepository(private val sesi: SessionManager) {
 
     fun loginUser(username: String) {
         sesi.createLoginSession()
-        sesi.saveToPreference(SessionManager.KEY_USERNAME, username)
+        sesi.saveToPreference(com.riopermana.core.SessionManager.KEY_USERNAME, username)
     }
 
-    fun getUser() = sesi.getFromPreference(SessionManager.KEY_USERNAME)
+    fun getUser() = sesi.getFromPreference(com.riopermana.core.SessionManager.KEY_USERNAME)
 
     fun isUserLogin() = sesi.isLogin
 
